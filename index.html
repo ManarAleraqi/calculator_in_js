@@ -81,7 +81,7 @@
     .calculator .keys .row .number input {
       background-color:inherit;
       border-style: inherit;
-font-size: 25px;
+      font-size: 25px;
 
         width: 100%;
       height: 70px;
@@ -154,9 +154,21 @@ font-size: 25px;
       font-weight: bold;
       color: #4a4a4a;
     }
-
-
+    .calculator .keys .row .number input:hover {
+      background-color: #333333;
+      color: #ffffff;
     }
+
+    .calculator .keys .row .symbol span input:hover {
+      background-color: #555555;
+      color: #ffffff;
+    }
+
+    .calculator .keys .row .symbol.action span input:hover {
+      background: linear-gradient(60deg, #ff0300, #ffa100);
+    }
+
+
   </style>
 </head>
 <body>
@@ -170,10 +182,11 @@ font-size: 25px;
     </div>
     <div class="input">
       <input class="input op" type="text" name="operation" value="" placeholder="..." readonly><br>
-      <input class="input result" type="text" name="result" value="" placeholder="results" readonly>
+      <input class="input result" type="text" name="result" value="" placeholder="..." readonly>
     </div>
   </div>
   <div class="keys">
+    
     <div class="row">
       <div class="number">
         <input  type="button" name="" value="7" onclick="addinput('7')">
@@ -206,7 +219,7 @@ font-size: 25px;
     </div>
     <div class="row">
       <div class="number">
-        <input class="dull C" type="button" name="" value="C" onclick="clear()">
+        <input class="dull C" type="button" name="" value="C" onclick="clearall()">
         <input type="button" name="" value="0" onclick="addinput('0')">
         <input class="min" type="button" name="" value="-" onclick="addinput('-')">
       </div>
@@ -224,9 +237,11 @@ font-size: 25px;
     input.value += value;
   }
 
-  function clear() {
+  function clearall() {
     var input = document.querySelector('.input.op');
+    var result = document.querySelector('.input.result');
     input.value = '';
+    result.value = '';
   }
 
   function calculate() {
@@ -236,7 +251,7 @@ font-size: 25px;
     try {
       result.value = eval(input.value);
     } catch (error) {
-      result.value = 'errorrrr';
+      result.value = 'Error';
     }
   }
 </script>
